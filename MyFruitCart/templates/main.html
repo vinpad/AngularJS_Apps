@@ -1,0 +1,37 @@
+<h2 class="text-warning">All Fruits Available</h2>    
+<table  class="table  table-bordered">
+    <tr class="danger">
+        <th>Image</th>
+        <th>Name</th>
+        <th>Descrition</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th><a href="#/viewcart">view cart</a></th>
+    </tr>
+    <tr class="active" ng-repeat="x in cart.products | orderBy:'name' ">
+        <td><img ng-src="images/{{x.id}}.jpg" alt="{{x.name}}" /></td>
+        <td>{{x.name}}</td>
+        <td>{{x.description}}</td>
+        <td>{{x.price}}</td>
+        <td>{{x.quantity}}</td>
+        <td> 
+            <button class="btn btn-success" type="button" ng-disabled="x.quantity >= 10"
+                            ng-click="addProductToCart(x)">+</button>        
+            <button class="btn btn-inverse" type="button" ng-disabled="x.quantity < 1"
+                            ng-click="removeProductToCart(x)">-</button>
+         </td>       
+    </tr>
+    <tr ng-repeat="x in store.products | filter:filterNotInCart |orderBy:'name' ">
+        <td><img ng-src="images/{{x.id}}.jpg" alt="{{x.name}}" /></td>
+        <td>{{x.name}}</td>
+        <td>{{x.description}}</td>
+        <td>{{x.price}}</td>
+        <td>{{x.quantity}}</td>
+        <td> 
+            <button class="btn btn-success" type="button" ng-disabled="x.quantity >= 10"
+                            ng-click="addProductToCart(x)">+</button>        
+            <button class="btn btn-inverse" type="button" ng-disabled="x.quantity < 1"
+                            ng-click="removeProductToCart(x)">-</button>
+         </td>
+    </tr>
+</table>
